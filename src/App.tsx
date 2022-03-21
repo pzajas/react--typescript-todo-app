@@ -1,6 +1,7 @@
 import { ChangeEvent, FunctionComponent, useState } from "react"
 import { InterfaceTodos } from "./interfaces/Interface"
 import Form from "./components/form/Form"
+import TodoList from "./components/list/TodoList"
 
 const App: FunctionComponent = () => {
   const [userInput, setUserInput] = useState<string>("")
@@ -25,9 +26,7 @@ const App: FunctionComponent = () => {
         onChangeHandler={onChangeHandler}
         onSubmitHandler={onSubmitHandler}
       />
-      {userTodos.map(todo => (
-        <li>{todo.id}</li>
-      ))}
+      <TodoList userTodos={userTodos} />
     </div>
   )
 }
