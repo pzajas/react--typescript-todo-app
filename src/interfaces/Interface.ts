@@ -12,3 +12,10 @@ export interface InterfaceTodos {
   id: number
   text: string
 }
+
+export interface InterfaceSingleTodo {
+  todo: {
+    id: number
+    text: string
+  }
+}
