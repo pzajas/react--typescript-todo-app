@@ -1,11 +1,15 @@
 import { ChangeEvent, FunctionComponent, useState } from "react"
-import { InterfaceTodos } from "./interfaces/Interface"
 import Form from "./components/form/Form"
 import TodoList from "./components/list/TodoList"
 
+interface InterfaceUserTodos {
+  id: number
+  text: string
+}
+
 const App: FunctionComponent = () => {
   const [userInput, setUserInput] = useState<string>("")
-  const [userTodos, setUserTodos] = useState<InterfaceTodos[]>([])
+  const [userTodos, setUserTodos] = useState<InterfaceUserTodos[]>([])
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value)
@@ -26,7 +30,7 @@ const App: FunctionComponent = () => {
         onChangeHandler={onChangeHandler}
         onSubmitHandler={onSubmitHandler}
       />
-      <TodoList userTodos={userTodos} />
+      <TodoList userTodos={userTodos} setUserTodos={setUserTodos} />
     </div>
   )
 }

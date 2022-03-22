@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import { InterfaceTodo } from "../../interfaces/Interface"
+import { InterfaceTodo } from "../../interfaces/Interfaces"
 
 const Form: FunctionComponent<InterfaceTodo> = ({ userInput, setUserInput, onChangeHandler, onSubmitHandler }) => {
   return (
