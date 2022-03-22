@@ -1,4 +1,4 @@
-import React from "react"
+import { Dispatch, SetStateAction } from "react"
 
 export interface InterfaceTodo {
   userInput: string
@@ -8,14 +8,16 @@ export interface InterfaceTodo {
   onSubmitHandler: (e: React.SyntheticEvent) => void
 }
 
-export interface InterfaceTodos {
+export interface Todo {
   id: number
   text: string
 }
 
-export interface InterfaceSingleTodo {
-  todo: {
-    id: number
-    text: string
-  }
+export interface UserTodos {
+  id: number
+  text: string
+}
+
+export interface SetUserTodos {
+  setUserTodos: Dispatch<SetStateAction<Todo>>
 }

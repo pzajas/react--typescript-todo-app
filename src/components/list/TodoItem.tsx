@@ -1,10 +1,21 @@
-import { FunctionComponent } from "react"
-import { InterfaceSingleTodo } from "../../interfaces/Interface"
+import { FunctionComponent, Dispatch, SetStateAction } from "react"
+import { Todo, UserTodos } from "../../interfaces/Interfaces"
 
-const TodoItem: FunctionComponent<InterfaceSingleTodo> = ({ todo }) => {
+interface TodoItemProps {
+  userTodos: UserTodos[]
+  todo: Todo
+  setUserTodos: Dispatch<SetStateAction<UserTodos[]>>
+}
+
+const TodoItem: FunctionComponent<TodoItemProps> = ({ todo, userTodos, setUserTodos }: TodoItemProps) => {
+  const handleDeleteTodo = (): void => {
+    setUserTodos(userTodos.filter(item => item.id !== todo.id))
+  }
+
   return (
     <div>
-      {todo.id} <button>DELETE</button>
+      <>{todo.text}</>
+      <button onClick={handleDeleteTodo}>Delete</button>
     </div>
   )
 }
