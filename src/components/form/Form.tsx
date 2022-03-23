@@ -1,12 +1,12 @@
 import { FunctionComponent } from "react"
 import { InterfaceTodo } from "../../interfaces/Interfaces"
 
-const Form: FunctionComponent<InterfaceTodo> = ({ userInput, setUserInput, onChangeHandler, onSubmitHandler }) => {
+const Form: FunctionComponent<InterfaceTodo> = ({ userInput, handleOnChange, handleOnSubmit }) => {
   return (
     <div>
-      <form onSubmit={onSubmitHandler}>
-        <input onChange={onChangeHandler} value={userInput} />
-        <button type="submit">Submit</button>
+      <form onSubmit={handleOnSubmit}>
+        <input onChange={handleOnChange} value={userInput} />
+        <button type="submit">+</button>
       </form>
     </div>
   )

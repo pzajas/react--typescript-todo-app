@@ -1,10 +1,10 @@
 import { FunctionComponent, Dispatch, SetStateAction } from "react"
-import { UserTodos } from "../../interfaces/Interfaces"
+import { Todo } from "../../interfaces/Interfaces"
 import TodoItem from "./TodoItem"
 
 interface Props {
   userTodos: { id: number; text: string }[]
-  setUserTodos: Dispatch<SetStateAction<UserTodos[]>>
+  setUserTodos: Dispatch<SetStateAction<Todo[]>>
 }
 
 const TodoList: FunctionComponent<Props> = ({ userTodos, setUserTodos }: Props) => {

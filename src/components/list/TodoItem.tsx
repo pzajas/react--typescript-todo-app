@@ -1,20 +1,26 @@
-import { FunctionComponent, Dispatch, SetStateAction } from "react"
-import { Todo, UserTodos } from "../../interfaces/Interfaces"
+import { useState, FunctionComponent, Dispatch, SetStateAction } from "react"
+import { Todo } from "../../interfaces/Interfaces"
 
 interface TodoItemProps {
-  userTodos: UserTodos[]
+  userTodos: Todo[]
   todo: Todo
-  setUserTodos: Dispatch<SetStateAction<UserTodos[]>>
+  setUserTodos: Dispatch<SetStateAction<Todo[]>>
 }
 
 const TodoItem: FunctionComponent<TodoItemProps> = ({ todo, userTodos, setUserTodos }: TodoItemProps) => {
+  const [isComplete, setIsComplete] = useState<boolean>(false)
+
+  const handleToggleComplete = (): void => {
+    setIsComplete(!isComplete)
+  }
+
   const handleDeleteTodo = (): void => {
     setUserTodos(userTodos.filter(item => item.id !== todo.id))
   }
 
   return (
     <div>
-      <>{todo.text}</>
+      <div onClick={handleToggleComplete}>{todo.text}</div>
       <button onClick={handleDeleteTodo}>Delete</button>
     </div>
   )
