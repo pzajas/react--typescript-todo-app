@@ -11,11 +11,11 @@ const App: FunctionComponent = () => {
   const [userInput, setUserInput] = useState<string>("")
   const [userTodos, setUserTodos] = useState<InterfaceUserTodos[]>([])
 
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value)
   }
 
-  const onSubmitHandler = (e: React.SyntheticEvent) => {
+  const handleOnSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
 
     setUserTodos([...userTodos, { id: Math.random() * 1000, text: userInput }])
@@ -27,8 +27,8 @@ const App: FunctionComponent = () => {
       <Form
         userInput={userInput}
         setUserInput={setUserInput}
-        onChangeHandler={onChangeHandler}
-        onSubmitHandler={onSubmitHandler}
+        handleOnChange={handleOnChange}
+        handleOnSubmit={handleOnSubmit}
       />
       <TodoList userTodos={userTodos} setUserTodos={setUserTodos} />
     </div>
