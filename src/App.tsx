@@ -1,6 +1,23 @@
 import { ChangeEvent, FunctionComponent, useState } from "react"
 import Form from "./components/form/Form"
 import TodoList from "./components/list/TodoList"
+import styled from "styled-components"
+
+const StyledApplicationContainer = styled.div`
+  box-sizing: border-box;
+  padding: 10rem;
+  width: 100vw;
+  height: 100vh;
+  background-color: #181818;
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+
+  & * {
+    font-family: "Poppins", sans-serif;
+  }
+`
 
 interface InterfaceUserTodos {
   id: number
@@ -23,7 +40,7 @@ const App: FunctionComponent = () => {
   }
 
   return (
-    <div>
+    <StyledApplicationContainer>
       <Form
         userInput={userInput}
         setUserInput={setUserInput}
@@ -31,7 +48,7 @@ const App: FunctionComponent = () => {
         handleOnSubmit={handleOnSubmit}
       />
       <TodoList userTodos={userTodos} setUserTodos={setUserTodos} />
-    </div>
+    </StyledApplicationContainer>
   )
 }
 
