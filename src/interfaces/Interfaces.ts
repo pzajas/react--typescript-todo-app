@@ -8,5 +8,6 @@ export interface InterfaceTodo {
 
 export interface Todo {
   id: number
-  text: string
+  title: string
+  completed: boolean
 }
