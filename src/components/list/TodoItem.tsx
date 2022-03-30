@@ -1,11 +1,12 @@
-import { useState, FunctionComponent, Dispatch, SetStateAction } from "react"
-import styled from "styled-components"
+import { useState, FunctionComponent } from "react"
+import { useDispatch } from "react-redux"
 import { Todo } from "../../interfaces/Interfaces"
+import { deleteTodo } from "../../redux/slice/todoSlice/todoSlice"
+
+import styled from "styled-components"
 
 interface TodoItemProps {
-  userTodos: Todo[]
   todo: Todo
-  setUserTodos: Dispatch<SetStateAction<Todo[]>>
 }
 
 interface StyledTodoItemProps {
@@ -34,7 +35,8 @@ const StyledTodoTextContainer = styled.div<StyledTodoItemProps>`
   text-decoration: ${({ isComplete }) => (isComplete ? "line-through" : "none")};
 `
 
-const TodoItem: FunctionComponent<TodoItemProps> = ({ todo, userTodos, setUserTodos }: TodoItemProps) => {
+const TodoItem: FunctionComponent<TodoItemProps> = ({ todo }) => {
+  const dispatch = useDispatch()
   const [isComplete, setIsComplete] = useState(false)
 
   const handleToggleComplete = () => {
@@ -42,14 +44,18 @@ const TodoItem: FunctionComponent<TodoItemProps> = ({ todo, userTodos, setUserTo
     console.log(isComplete)
   }
 
-  const handleDeleteTodo = (): void => {
-    setUserTodos(userTodos.filter(item => item.id !== todo.id))
+  const handleDeleteTodo = () => {
+    dispatch(
+      deleteTodo({
+        id: todo.id,
+      })
+    )
   }
 
   return (
     <StyledTodoItemContainer>
       <StyledTodoTextContainer isComplete={isComplete} onClick={handleToggleComplete}>
-        {todo.text}
+        {todo.title}
       </StyledTodoTextContainer>
       <button onClick={handleDeleteTodo}>Delete</button>
     </StyledTodoItemContainer>

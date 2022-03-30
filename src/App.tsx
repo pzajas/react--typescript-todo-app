@@ -2,6 +2,8 @@ import { ChangeEvent, FunctionComponent, useState } from "react"
 import Form from "./components/form/Form"
 import TodoList from "./components/list/TodoList"
 import styled from "styled-components"
+import { useDispatch } from "react-redux"
+import { addTodo } from "./redux/slice/todoSlice/todoSlice"
 
 const StyledApplicationContainer = styled.div`
   box-sizing: border-box;
@@ -19,14 +21,10 @@ const StyledApplicationContainer = styled.div`
   }
 `
 
-interface InterfaceUserTodos {
-  id: number
-  text: string
-}
-
 const App: FunctionComponent = () => {
   const [userInput, setUserInput] = useState<string>("")
-  const [userTodos, setUserTodos] = useState<InterfaceUserTodos[]>([])
+
+  const dispatch = useDispatch()
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value)
@@ -35,7 +33,11 @@ const App: FunctionComponent = () => {
   const handleOnSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
 
-    setUserTodos([...userTodos, { id: Math.random() * 1000, text: userInput }])
+    dispatch(
+      addTodo({
+        title: userInput,
+      })
+    )
     setUserInput("")
   }
 
@@ -47,7 +49,7 @@ const App: FunctionComponent = () => {
         handleOnChange={handleOnChange}
         handleOnSubmit={handleOnSubmit}
       />
-      <TodoList userTodos={userTodos} setUserTodos={setUserTodos} />
+      <TodoList />
     </StyledApplicationContainer>
   )
 }
