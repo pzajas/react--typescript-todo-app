@@ -1,16 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-// interface X {
-//   id: number
-//   title: string
-//   completed: boolean
-
-//   push: any
-//   filter: any
-// }
-
-// const initialState = { id: Math.random() * 1000 } as X
-
 interface InterfaceTodoSlice {
   id: number
   title: string
