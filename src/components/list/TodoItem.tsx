@@ -41,7 +41,6 @@ const TodoItem: FunctionComponent<TodoItemProps> = ({ todo }) => {
 
   const handleToggleComplete = () => {
     setIsComplete(!isComplete)
-    console.log(isComplete)
   }
 
   const handleDeleteTodo = () => {
